@@ -1,0 +1,27 @@
+SQL tasks solutions:
+
+1) SELECT DISTINCT status FROM tasks ORDER BY status
+
+2) SELECT projects.id AS Project_id, projects.name AS Project_name, COUNT(tasks.id) AS Tasks_count
+FROM projects INNER JOIN tasks ON tasks.project_id = projects.id GROUP BY Project_id ORDER BY Tasks_count DESC
+
+3) SELECT projects.id AS Project_id, projects.name AS Project_name, COUNT(tasks.id) AS Tasks_count
+FROM projects INNER JOIN tasks ON task.project_id = projects.id GROUP BY Project_id ORDER BY project_name
+
+4) SELECT projects.name AS Project_name, tasks.name AS Tasks_name
+FROM projects INNER JOIN tasks ON projects.id = tasks.project_id WHERE projects.name LIKE 'N%'
+
+5) SELECT projects.name AS Project_name, COUNT(tasks.id) AS Tasks_count
+FROM projects INNER JOIN tasks ON projects.id = tasks.project_id
+WHERE projects.name LIKE '%_a_%' GROUP BY Project_id
+
+6) SELECT name
+FROM tasks GROUP BY name HAVING COUNT(name) > 1 ORDER BY name
+
+7) SELECT projects.name, tasks.name AS task_name
+FROM projects INNER JOIN tasks ON tasks.project_id = projects.id WHERE projects.name = 'Garage' GROUP BY tasks.name,
+tasks.status HAVING COUNT(tasks.status) > 1 AND COUNT(tasks.name) > 1 ORDER BY COUNT(tasks.name)
+
+8) SELECT projects.id AS Project_id, projects.name AS Project_name
+FROM projects INNER JOIN tasks ON projects.id = tasks.project_id
+GROUP BY tasks.status HAVING COUNT(tasks.status) = 10 AND tasks.status = 1 ORDER BY Project_id
